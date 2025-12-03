@@ -1,6 +1,8 @@
-// Controller for test route
-const testMessage = (req, res) => {
-    res.json({ message: "Backend is working!" });
-};
+const express = require("express");
+const router = express.Router();
 
-module.exports = { testMessage };
+router.get("/", (req, res) => {
+  res.json({ message: "API is working" });
+});
+
+module.exports = router;
