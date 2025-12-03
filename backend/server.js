@@ -10,6 +10,8 @@ connectDB();
 
 // Routes
 app.use("/api/rooms", require("./routes/roomRoutes"));
+app.use("/api/test", require("./routes/testRoutes"));
+
 
 // Default route
 app.get("/", (req, res) => {
