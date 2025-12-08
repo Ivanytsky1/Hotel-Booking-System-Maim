@@ -12,7 +12,7 @@ connectDB();
 app.use("/api/rooms", require("./routes/roomRoutes"));
 app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/clients", require("./routes/clientRoutes"));
-
+app.use("/api/reservations", require("./routes/reservationRoutes"));
 
 
 // Default route
