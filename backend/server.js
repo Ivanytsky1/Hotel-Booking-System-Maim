@@ -16,6 +16,10 @@ app.use("/api/reservations", require("./routes/reservationRoutes"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/bookingRoutes"));
+app.use("/api/services", require("./routes/serviceRoutes"));
+app.use("/api/booking-services", require("./routes/bookingServiceRoutes"));
+
+
 
 
 
