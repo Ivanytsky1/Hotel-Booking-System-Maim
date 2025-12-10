@@ -16,12 +16,6 @@ const BookingSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    
-    total_price: {
-      type: Number,
-      required: true,
-    },
-
     check_out_date: {
       type: Date,
       required: true,
@@ -33,6 +27,18 @@ const BookingSchema = new mongoose.Schema(
       },
     },
 
+    total_price: {
+      type: Number,
+      required: true,
+    },
+
+    // 🔥 ДОДАНО! (без цього Task 5 НЕ ПРАЦЮЄ)
+    services: [
+      {
+        name: String,
+        price: Number,
+      }
+    ],
 
     status: {
       type: String,
