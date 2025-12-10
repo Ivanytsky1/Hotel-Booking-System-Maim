@@ -3,31 +3,29 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 
 const app = express();
+
+// Middleware
 app.use(express.json());
 
-// Connect DB
+// Connect to MongoDB
 connectDB();
 
-// Routes
+// ROUTES
 app.use("/api/rooms", require("./routes/roomRoutes"));
-app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/clients", require("./routes/clientRoutes"));
 app.use("/api/reservations", require("./routes/reservationRoutes"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
+
+// Booking Routes (Task 5 + Full Booking API)
 app.use("/api", require("./routes/bookingRoutes"));
-app.use("/api/services", require("./routes/serviceRoutes"));
-app.use("/api/booking-services", require("./routes/bookingServiceRoutes"));
-
-
-
-
 
 // Default route
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
 
+// PORT
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
