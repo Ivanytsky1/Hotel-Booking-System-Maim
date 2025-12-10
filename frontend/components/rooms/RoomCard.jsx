@@ -1,4 +1,6 @@
-export default function RoomCard({ name, price }) {
+// components/rooms/RoomCard.jsx
+
+export default function RoomCard({ name, price, description }) {
   return (
     <div
       style={{
@@ -11,6 +13,11 @@ export default function RoomCard({ name, price }) {
     >
       <h3 style={{ margin: "0 0 8px" }}>{name}</h3>
       <p style={{ margin: 0 }}>Price per night: ${price}</p>
+
+      {description && (
+        <p style={{ margin: "4px 0 0", color: "#555" }}>{description}</p>
+      )}
     </div>
   );
 }
+
