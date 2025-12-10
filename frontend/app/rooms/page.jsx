@@ -42,11 +42,7 @@ export default async function RoomsPage() {
           href={`/rooms/${room.id ?? index + 1}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <RoomCard
-            name={room.name ?? "Room"}
-            price={room.price ?? 0}
-            description={room.description}
-          />
+          <RoomCard room={room} />
         </a>
       ))}
     </div>
