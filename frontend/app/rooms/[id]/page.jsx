@@ -1,5 +1,6 @@
 // app/rooms/[id]/page.jsx
 import RoomCard from "@/components/rooms/RoomCard";
+import RoomBookingSection from "@/components/rooms/RoomBookingSection";
 
 async function fetchRoom(id) {
   try {
@@ -12,7 +13,7 @@ async function fetchRoom(id) {
     }
 
     const data = await res.json();
-    return data; // одна кімната-об'єкт
+    return data;
   } catch (error) {
     console.log("Falling back to static room: fetch failed");
 
@@ -36,9 +37,13 @@ export default async function RoomPage({ params }) {
   }
 
   return (
-    <main style={{ padding: "20px" }}>
+    <main style={{ padding: 20 }}>
       <h1>Деталі кімнати</h1>
+
       <RoomCard room={room} />
+
+      {/* ✅ Client booking form */}
+      <RoomBookingSection room={room} />
     </main>
   );
 }
