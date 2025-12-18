@@ -1,23 +1,56 @@
-// components/rooms/RoomCard.jsx
+"use client";
 
-export default function RoomCard({ name, price, description }) {
+export default function RoomCard({ room, name, price, description, image }) {
+  // Підтримуємо обидва варіанти: або передали room, або окремі поля
+  const data = room ?? { name, price, description, image };
+
+  const title = data?.name ?? "Room";
+  const cost = data?.price ?? 0;
+  const desc = data?.description ?? "";
+
+  // Якщо з API не прийшло зображення — підставимо з public
+  // room1.jpg / room2.jpg / room3.jpg
+  const imgSrc =
+    data?.image ||
+    data?.imageUrl ||
+    (data?.id ? `/room${data.id}.jpg` : "/room1.jpg");
+
   return (
     <div
       style={{
-        border: "1px solid #E5E7EB",
-        borderRadius: 8,
+        border: "1px solid #ddd",
+        borderRadius: 12,
         padding: 16,
         marginBottom: 12,
-        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+        display: "flex",
+        gap: 16,
+        alignItems: "center",
       }}
     >
-      <h3 style={{ margin: "0 0 8px" }}>{name}</h3>
-      <p style={{ margin: 0 }}>Price per night: ${price}</p>
+      <img
+        src={imgSrc}
+        alt={title}
+        style={{
+          width: 160,
+          height: 100,
+          objectFit: "cover",
+          borderRadius: 10,
+          flexShrink: 0,
+        }}
+        onError={(e) => {
+          e.currentTarget.src = "/room1.jpg";
+        }}
+      />
 
-      {description && (
-        <p style={{ margin: "4px 0 0", color: "#555" }}>{description}</p>
-      )}
+      <div>
+        <h2 style={{ marginTop: 0, marginBottom: 8 }}>{title}</h2>
+
+        <p style={{ margin: 0, fontWeight: "bold" }}>
+          Price per night: ${cost}
+        </p>
+
+        {desc && <p style={{ marginTop: 8 }}>{desc}</p>}
+      </div>
     </div>
   );
 }
-
