@@ -16,21 +16,26 @@ export default function LoginPage() {
     setLoading(true);
     setMessage("");
 
-    // ✅ MOCK login rules:
-    // email: test@test.com
-    // password: 123456
     try {
-      await new Promise((r) => setTimeout(r, 400)); // маленька "імітація" запиту
+      await new Promise((r) => setTimeout(r, 300));
 
-      if (email.trim().toLowerCase() === "test@test.com" && password === "123456") {
-        // ✅ зберігаємо "сесію"
+      const users = JSON.parse(localStorage.getItem("mock_users") || "[]");
+      const normalizedEmail = email.trim().toLowerCase();
+
+      const found = users.find(
+        (u) => u.email.toLowerCase() === normalizedEmail && u.password === password
+      );
+
+      const isDefault = normalizedEmail === "test@test.com" && password === "123456";
+
+      if (found || isDefault) {
         localStorage.setItem("mock_token", "ok");
-        localStorage.setItem("mock_user", JSON.stringify({ email }));
+        localStorage.setItem("mock_user", JSON.stringify({ email: normalizedEmail }));
 
         setMessage("✅ Успішний логін! Переходимо до кімнат...");
         router.push("/rooms");
       } else {
-        setMessage("❌ Невірний email або пароль (mock: test@test.com / 123456)");
+        setMessage("❌ Невірний email або пароль");
       }
     } finally {
       setLoading(false);
@@ -41,7 +46,7 @@ export default function LoginPage() {
     <main style={{ padding: 20 }}>
       <h1>Login Page</h1>
 
-      <form onSubmit={onSubmit} style={{ maxWidth: 420 }}>
+      <form onSubmit={onSubmit} style={{ maxWidth: 520 }}>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
