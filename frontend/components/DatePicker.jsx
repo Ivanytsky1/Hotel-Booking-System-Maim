@@ -70,4 +70,3 @@ export default function BookingDatePicker({ onChange }) {
     </div>
   );
 }
-
