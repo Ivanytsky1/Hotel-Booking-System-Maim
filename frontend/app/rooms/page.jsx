@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import RoomCard from "../../components/rooms/RoomCard";
 import BookingDatePicker from "../../components/DatePicker";
+import BookingForm from "../../components/BookingForm";
 
 const FALLBACK = [
   { id: 1, name: "Standard Room", price: 50, description: "Cozy room for 2." },
@@ -81,7 +82,7 @@ export default function RoomsPage() {
 
       {message && <p style={{ marginTop: 12 }}>{message}</p>}
 
-      <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 16 }}>
         {rooms.map((room, index) => (
           <a
             key={room.id ?? index}
@@ -92,6 +93,13 @@ export default function RoomsPage() {
           </a>
         ))}
       </div>
+
+      <hr style={{ margin: "32px 0" }} />
+
+      
+
+      
+
     </div>
   );
 }
